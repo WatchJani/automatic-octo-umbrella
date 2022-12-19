@@ -4,7 +4,7 @@
 #include <time.h>
 
 const int NUMBER_OF_ATTEMPTS = 10;
-const char ime[][50] = {
+char words[][50] = {
     "aardvark",
     "aardwolf",
     "aaron",
@@ -57,15 +57,16 @@ const char ime[][50] = {
     "abducts",
 };
 
-// const char* load_words(){
-//     return ime[1];
-// }
+char *load_word(){
+    char *my_word = words[rand()%50 + 1];
+    return my_word;
+}
 
 int main(){
     srand(time(NULL));
-    // printf("asdsad asd asd asd \n");
+    char *my_word = load_word();
 
-    printf("%s \n", ime[49]);
+    printf("%s \n", my_word);
 }
 
 
