@@ -5,7 +5,17 @@
 
 const int NUMBER_OF_ATTEMPTS = 10;
 
+const char* load_words(){
+    static char ime[] = "asdasdasd";
+    return ime;
+}
+
 int main(){
     srand(time(NULL));
-    printf("asdsad asd asd asd \n");
+    // printf("asdsad asd asd asd \n");
+
+    printf("%s \n", load_words());
+
 }
+
+
