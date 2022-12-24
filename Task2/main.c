@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int NUMBER_OF_ATTEMPTS = 10;
+int NUMBER_OF_ATTEMPTS = 6;
 char words[][50] = {
     "aardvark",
     "aardwolf",
@@ -62,9 +62,30 @@ char *load_word(){
     return my_word;
 }
 
+bool isFind(char letter){
+    
+}
+
 int main(){
     srand(time(NULL));
     char *my_word = load_word();
+    bool game_end = true;
+
+    while ( NUMBER_OF_ATTEMPTS > 0){
+        printf("%i \n", NUMBER_OF_ATTEMPTS);
+        char my_letter;
+        scanf("%s", &my_letter);
+
+        int index = 0;
+        while (my_word[index] != '\0' ){
+            if(my_word[index] == my_letter ){
+                printf("yes \n");
+            }
+            index++;
+        }
+        NUMBER_OF_ATTEMPTS--;
+    }
+    
 
     printf("%s \n", my_word);
 }
