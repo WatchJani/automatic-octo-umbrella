@@ -57,7 +57,7 @@ char words[][50] = {
     "abducts",
 };
 
-char *load_word(){
+char *loadWord(){
     char *my_word = words[rand()%50 + 1];
     return my_word;
 }
@@ -70,17 +70,34 @@ int myLength(char my_word[]){
     return index;
 }
 
-void PrintGame(char game[], int length){
+void printGame(char game[], int length){
     for(int i = 0; i < length; i++){
         printf("%c", game[i]);
     }
     printf("\n");
 }
 
+bool isFinish(char my_word[], char game[], int length){
+    for (int i = 0; i < length; i++){
+        if(my_word[i]!= game[i]){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void EndGame(char my_word[], char game[], int length){
+    if(isFinish(my_word,game,length)){
+        printf("you win\n");
+    }else{
+        printf("you lose\n");
+    }
+}
+
 int main(){
     srand(time(NULL));
-    char *my_word = load_word();
-    bool game_end = true;
+    char *my_word = loadWord();
     
     int length = myLength(my_word);
 
@@ -92,26 +109,30 @@ int main(){
         game[i] = '_';
     }
 
-    while(game_end){
-        //printf("%i \n", NUMBER_OF_ATTEMPTS);
+    while(!isFinish(my_word,game,length) && NUMBER_OF_ATTEMPTS > 0){
+        printf("%i \n", NUMBER_OF_ATTEMPTS);
         char my_letter;
         scanf("%s", &my_letter);
 
+        bool find = false;
         int index = 0;
+
         while (my_word[index] != '\0' ){
             if(my_word[index] == my_letter ){
                 game[index] = my_letter;
+                 find = true;
             }
             index++;
         }
-        NUMBER_OF_ATTEMPTS--;
-        PrintGame(game, length);
-        // if(game == my_word){
-        //     game_end = false;
-        // }
+
+        if(!find){
+            NUMBER_OF_ATTEMPTS--;
+        }
+
+        printGame(game, length);
     }
 
-    
+    EndGame(my_word, game, length);
 }
 
 
