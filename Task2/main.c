@@ -66,13 +66,25 @@ bool isFind(char letter){
     
 }
 
+int myLength(char my_word[]){
+    int index = 0;
+    while (my_word[index] != '\0' ){
+        index++;
+    }
+    return index;
+}
+
 int main(){
     srand(time(NULL));
     char *my_word = load_word();
     bool game_end = true;
 
+    printf("%s\n", my_word);
+    printf("%i \n", myLength(my_word));
+    
+
     while ( NUMBER_OF_ATTEMPTS > 0){
-        printf("%i \n", NUMBER_OF_ATTEMPTS);
+        //printf("%i \n", NUMBER_OF_ATTEMPTS);
         char my_letter;
         scanf("%s", &my_letter);
 
@@ -85,9 +97,6 @@ int main(){
         }
         NUMBER_OF_ATTEMPTS--;
     }
-    
-
-    printf("%s \n", my_word);
 }
 
 
