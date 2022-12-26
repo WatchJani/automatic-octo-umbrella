@@ -4,11 +4,24 @@
 #include <time.h>
 
 
-bool isValid(char myFlor){
-    char flor[] = {'1', '2', '3', '4', '5', 'P', 'p'};
+bool isSame(char first[], char second[]){
+    int index = 0;
+    while (first[index] != '\0'){
+        if(second[index] != first[index]){
+            return false;
+        }
+        index++;
+    }
 
-    for (int i =0 ; i< 5; i++){
-        if (myFlor == flor[i]){
+    return true;
+}
+
+bool isValid(char myFlor[]){
+    char flor[][2] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5", "p", "b1" ,"b2", "b3"};
+
+
+    for (int i = 0; i< 13; i++){
+        if(isSame(myFlor, flor[i])){
             return true;
         }
     }
@@ -25,11 +38,11 @@ bool isMax(char myFlor){
 }
 
 int main(){
-    if (isValid('1')){
+    if (isValid("b1")){
         printf("asdasd\n");
     }
 
-    if (isMax('5')){
-        printf("25\n");
-    }
+    // if (isMax('5')){
+    //     printf("25\n");
+    // }
 }
