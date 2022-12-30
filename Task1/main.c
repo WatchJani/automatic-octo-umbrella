@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+char state[] = "P";
 const int NUMBER_OF_FLOR = 13;
 char flor[][2] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5", "p", "b1" ,"b2", "b3"};
 
@@ -36,12 +37,22 @@ bool isMinMax(char myFlor[]){
     return false;
 }
 
-int main(){
-    if (isValid("b1")){
-        printf("asdasd\n");
+void dvigalo(){
+    char user[20];
+    scanf("%s", user);
+
+    if (!isValid(user)){
+        printf("Vnesite pravo nadstropje!\n");
+        dvigalo();
     }
 
-    if (isMinMax("5")){
-        printf("25\n");
+    if (isMinMax(user)){
+        printf("trenutno ste na %s, ne morete naprej", user);
+        dvigalo();
     }
+}
+
+
+int main(){
+    dvigalo();
 }
