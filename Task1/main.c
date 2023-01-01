@@ -69,8 +69,6 @@ void dvigalo(){
 
     setUppercase(user);
 
-    printf("%s", user);
-
     if (!isValid(user)){
         printf("Vnesite pravo nadstropje!\n");
         dvigalo();
@@ -80,6 +78,19 @@ void dvigalo(){
         printf("trenutno ste na %s, ne morete naprej", user);
         dvigalo();
     }
+
+    char upit[20];
+    
+    
+    for (int i = indexOf("P"); i <= indexOf(user); i++){
+        printf("%s\n",flor[i]);
+        scanf("%s", upit);
+
+        if(isSame(setUppercase(upit) , "Y" )){
+            printf("end");
+            break;
+        }
+    } 
 }
 
 int main(){
