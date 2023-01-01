@@ -4,8 +4,8 @@
 #include <time.h>
 
 char state[] = "P";
-const int NUMBER_OF_FLOR = 13;
-char flor[][2] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5", "p", "b1" ,"b2", "b3"};
+const int NUMBER_OF_FLOR = 9;
+char flor[][2] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5"};
 
 bool isSame(char first[], char second[]){
     int index = 0;
@@ -37,9 +37,39 @@ bool isMinMax(char myFlor[]){
     return false;
 }
 
+
+int indexOf(char find[]){
+    int index = 0;
+    for (int i = 0; i< NUMBER_OF_FLOR; i++){
+        if(isSame(find, flor[i])){
+            return index;
+        }else{
+            index++;
+        }
+    }
+}
+
+char *setUppercase(char letter[]) {
+    char *uppercase;
+
+    uppercase = letter;
+    for (int i = 0; letter[i] != '\0'; i++) {
+        if (letter[i] >= 'a' && letter[i] <= 'z') {
+            uppercase[i] = letter[i] - 'a' + 'A';
+        }
+    }
+
+    return uppercase;
+}
+
+
 void dvigalo(){
     char user[20];
     scanf("%s", user);
+
+    setUppercase(user);
+
+    printf("%s", user);
 
     if (!isValid(user)){
         printf("Vnesite pravo nadstropje!\n");
@@ -51,7 +81,6 @@ void dvigalo(){
         dvigalo();
     }
 }
-
 
 int main(){
     dvigalo();
