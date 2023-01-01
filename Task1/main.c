@@ -64,6 +64,7 @@ char *setUppercase(char letter[]) {
 
 
 void dvigalo(){
+    printf("V katero nadstropje želite iti?: ");
     char user[20];
     scanf("%s", user);
 
@@ -75,24 +76,25 @@ void dvigalo(){
     }
 
     if (isMinMax(user)){
-        printf("trenutno ste na %s, ne morete naprej", user);
+        printf("trenutno ste na %s, ne morete naprej!", user);
         dvigalo();
     }
 
     char upit[20];
     
-    
+    //fix code for b flors
     for (int i = indexOf("P"); i <= indexOf(user); i++){
-        printf("%s\n",flor[i]);
+        printf("Trenutno ste na nastropju << %s >>, ali hočeš iti ven?? (Y/N) \n",flor[i]);
         scanf("%s", upit);
 
         if(isSame(setUppercase(upit) , "Y" )){
-            printf("end");
+            printf("END \n");
             break;
         }
     } 
 }
 
 int main(){
+    printf("Možne izbire: << B1 B2 B3 P 1 2 3 4 5 >> \n");
     dvigalo();
 }
