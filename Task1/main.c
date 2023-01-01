@@ -7,6 +7,7 @@ char state[] = "P";
 const int NUMBER_OF_FLOR = 9;
 char flor[][2] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5"};
 
+//input verification part 2
 bool isSame(char first[], char second[]){
     int index = 0;
     while (first[index] != '\0'){
@@ -19,6 +20,7 @@ bool isSame(char first[], char second[]){
     return true;
 }
 
+//input verification part1
 bool isValid(char myFlor[]){
     for (int i = 0; i< NUMBER_OF_FLOR; i++){
         if(isSame(myFlor, flor[i])){
@@ -29,15 +31,16 @@ bool isValid(char myFlor[]){
     return false;
 }
 
+//if func( min max value )
 bool isMinMax(char myFlor[]){
-    if(myFlor=="5" || myFlor =="B3" || myFlor=="b3"){
+    if(myFlor=="5" || myFlor =="B3"){
         return true;
     }
 
     return false;
 }
 
-
+//find index of value 
 int indexOf(char find[]){
     int index = 0;
     for (int i = 0; i< NUMBER_OF_FLOR; i++){
@@ -49,6 +52,7 @@ int indexOf(char find[]){
     }
 }
 
+//set string to uppercase  
 char *setUppercase(char letter[]) {
     char *uppercase;
 
@@ -62,7 +66,7 @@ char *setUppercase(char letter[]) {
     return uppercase;
 }
 
-
+//submain program
 void dvigalo(){
     printf("V katero nadstropje želite iti?: ");
     char user[20];
@@ -82,16 +86,25 @@ void dvigalo(){
 
     char upit[20];
     
-    //fix code for b flors
+    //fix code for b flors i ako se upise neko drugo slovo osim n ce isot biti prihvaceno
     for (int i = indexOf("P"); i <= indexOf(user); i++){
-        printf("Trenutno ste na nastropju << %s >>, ali hočeš iti ven?? (Y/N) \n",flor[i]);
-        scanf("%s", upit);
-
+        if(!(indexOf(user) == i)){  // izbjegavam da me pita da li zelim izaci na zeljenom spratu!!
+            printf("Trenutno ste na nastropju << %s >>, ali hočeš iti ven?? (Y/N) \n",flor[i]);
+            printf("Tvoj odgovor: ");
+            scanf("%s", upit);
+        }else{
+            printf("Trenutno ste na nastropju << %s >>\n", flor[i]);
+            //OVDJE SE TREBA ZAPISATI U FILE
+        }
+        
         if(isSame(setUppercase(upit) , "Y" )){
             printf("END \n");
+
+            //OVDJE SE TREBA ZAPISATI U FILE
+
             break;
         }
-    } 
+    }
 }
 
 int main(){
