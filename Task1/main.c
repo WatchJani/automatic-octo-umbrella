@@ -3,11 +3,51 @@
 #include <stdlib.h>
 #include <time.h>
 
-
-//if file is empty
+//my state
 char state[3];
 const int NUMBER_OF_FLOR = 9;
 char flor[9][3] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5"};
+
+
+//input verification part 2
+bool isSame(char first[], char second[]);
+
+//input verification part1
+bool isValid(char myFlor[]);
+
+//if func( min max value )
+bool isMinMax(char myFlor[]);
+
+//find index of value 
+int indexOf(char find[]);
+
+//set string to uppercase  
+char *setUppercase(char letter[]);
+
+//File write
+void dataPrint(char flor[]);
+
+bool Print(char user[], char upit[], int i);
+
+//go up
+void up(char user[], char upit[]);
+
+//go down
+void down(char user[], char upit[]);
+
+//submain program
+void dvigalo();
+
+int main(){
+    FILE *pok_dat = fopen("dvigaloState.txt", "r");
+    //FILE READ
+    fgets(state, 3, pok_dat);
+
+    fclose(pok_dat);
+
+    printf("Možne izbire: << B1 B2 B3 P 1 2 3 4 5 >> \n");
+    dvigalo();
+}
 
 //input verification part 2
 bool isSame(char first[], char second[]){
@@ -103,7 +143,7 @@ bool Print(char user[], char upit[], int i){
         }
 }
 
-//popraviti
+//go up
 void up(char user[], char upit[]){
     for (int i = indexOf(state); i <= indexOf(user); i++){
         if(Print(user, upit, i)){
@@ -112,7 +152,7 @@ void up(char user[], char upit[]){
     }
 }
 
-//popraviti
+//go down
 void down(char user[], char upit[]){
  for (int i = indexOf(state); i >= indexOf(user); i--){
        if(Print(user, upit, i)){
@@ -150,16 +190,4 @@ void dvigalo(){
     }else{
         down(user, upit);
     }
-}
-
-int main(){
-
-    FILE *pok_dat = fopen("dvigaloState.txt", "r");
-    //FILE READ
-    fgets(state, 3, pok_dat);
-
-    fclose(pok_dat);
-
-    printf("Možne izbire: << B1 B2 B3 P 1 2 3 4 5 >> \n");
-    dvigalo();
 }
