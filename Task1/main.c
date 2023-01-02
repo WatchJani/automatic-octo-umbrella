@@ -68,11 +68,13 @@ char *setUppercase(char letter[]) {
     return uppercase;
 }
 
+//File write
 void dataPrint(char flor[]){
     FILE *pok_dat = fopen("dvigaloState.txt", "w");
     fprintf(pok_dat, flor,"\n");
     fclose(pok_dat);
 }
+
 
 bool Print(char user[], char upit[], int i){
   if(!(indexOf(user) == i)){  // izbjegavam da me pita da li zelim izaci na zeljenom spratu!!
@@ -118,7 +120,6 @@ void down(char user[], char upit[]){
         }
     }
 }
-
 
 
 //submain program
