@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+
+//if file is empty
 char state[] = "P";
 const int NUMBER_OF_FLOR = 9;
 char flor[9][3] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5"};
@@ -66,6 +68,12 @@ char *setUppercase(char letter[]) {
     return uppercase;
 }
 
+void dataPrint(char flor[]){
+    FILE *pok_dat = fopen("dvigaloState.txt", "w");
+    fprintf(pok_dat, flor,"\n");
+    fclose(pok_dat);
+}
+
 bool Print(char user[], char upit[], int i){
   if(!(indexOf(user) == i)){  // izbjegavam da me pita da li zelim izaci na zeljenom spratu!!
             printf("Trenutno ste na nastropju << %s >>, ali hočeš iti ven?? (Y/N) \n",flor[i]);
@@ -74,12 +82,14 @@ bool Print(char user[], char upit[], int i){
         }else{
             printf("Trenutno ste na nastropju << %s >>\n", flor[i]);
             //OVDJE SE TREBA ZAPISATI U FILE
+            dataPrint(flor[i]);
         }
         
         if(isSame(setUppercase(upit) , "Y" )){
             printf("END \n");
 
             //OVDJE SE TREBA ZAPISATI U FILE
+            dataPrint(flor[i]);
 
             return true;
         }
@@ -102,6 +112,8 @@ void down(char user[], char upit[]){
         }
     }
 }
+
+
 
 //submain program
 void dvigalo(){
