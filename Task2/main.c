@@ -56,6 +56,64 @@ char words[][50] = {
     "abductors",
     "abducts",
 };
+//set new word to game
+char *loadWord();
+
+//length of word
+int myLength(char my_word[]);
+
+//what was hit
+void printGame(char game[], int length);
+
+//matching
+bool isFinish(char my_word[], char game[], int length);
+
+//win or lose
+void EndGame(char my_word[], char game[], int length);
+
+
+//Main
+int main(){
+    srand(time(NULL));
+    char *my_word = loadWord();
+    
+    int length = myLength(my_word);
+
+    //printf("%s\n", my_word);
+
+    char game[length];
+
+    for(int i = 0; i< length;i++){
+        game[i] = '_';
+    }
+
+    while(!isFinish(my_word,game,length) && NUMBER_OF_ATTEMPTS > 0){
+        printf("Število poskusov: %i \n", NUMBER_OF_ATTEMPTS);
+        char my_letter;
+        printf("Vaš odgovor: ");
+        scanf("%s", &my_letter);
+
+        bool find = false;
+        int index = 0;
+
+        while (my_word[index] != '\0' ){
+            if(my_word[index] == my_letter ){
+                game[index] = my_letter;
+                 find = true;
+            }
+            index++;
+        }
+
+        if(!find){
+            NUMBER_OF_ATTEMPTS--;
+        }
+
+        printGame(game, length);
+    }
+
+    EndGame(my_word, game, length);
+}
+
 
 char *loadWord(){
     char *my_word = words[rand()%50 + 1];
@@ -94,45 +152,3 @@ void EndGame(char my_word[], char game[], int length){
         printf("you lose\n");
     }
 }
-
-int main(){
-    srand(time(NULL));
-    char *my_word = loadWord();
-    
-    int length = myLength(my_word);
-
-    printf("%s\n", my_word);
-
-    char game[length];
-
-    for(int i = 0; i< length;i++){
-        game[i] = '_';
-    }
-
-    while(!isFinish(my_word,game,length) && NUMBER_OF_ATTEMPTS > 0){
-        printf("%i \n", NUMBER_OF_ATTEMPTS);
-        char my_letter;
-        scanf("%s", &my_letter);
-
-        bool find = false;
-        int index = 0;
-
-        while (my_word[index] != '\0' ){
-            if(my_word[index] == my_letter ){
-                game[index] = my_letter;
-                 find = true;
-            }
-            index++;
-        }
-
-        if(!find){
-            NUMBER_OF_ATTEMPTS--;
-        }
-
-        printGame(game, length);
-    }
-
-    EndGame(my_word, game, length);
-}
-
-
