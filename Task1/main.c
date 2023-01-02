@@ -5,7 +5,7 @@
 
 
 //if file is empty
-char state[] = "P";
+char state[3];
 const int NUMBER_OF_FLOR = 9;
 char flor[9][3] = {"B3", "B2", "B1", "P", "1", "2", "3", "4", "5"};
 
@@ -81,14 +81,14 @@ bool Print(char user[], char upit[], int i){
             scanf("%s", upit);
         }else{
             printf("Trenutno ste na nastropju << %s >>\n", flor[i]);
-            //OVDJE SE TREBA ZAPISATI U FILE
+            //FILE WRITE
             dataPrint(flor[i]);
         }
         
         if(isSame(setUppercase(upit) , "Y" )){
             printf("END \n");
-
-            //OVDJE SE TREBA ZAPISATI U FILE
+            
+            //FILE WRITE
             dataPrint(flor[i]);
 
             return true;
@@ -147,6 +147,13 @@ void dvigalo(){
 }
 
 int main(){
+
+    FILE *pok_dat = fopen("dvigaloState.txt", "r");
+    //FILE READ
+    fgets(state, 3, pok_dat);
+
+    fclose(pok_dat);
+
     printf("Možne izbire: << B1 B2 B3 P 1 2 3 4 5 >> \n");
     dvigalo();
 }
