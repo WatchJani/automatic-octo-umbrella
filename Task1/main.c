@@ -87,7 +87,7 @@ bool Print(char user[], char upit[], int i){
 
 //popraviti
 void up(char user[], char upit[]){
-    for (int i = indexOf("P"); i <= indexOf(user); i++){
+    for (int i = indexOf(state); i <= indexOf(user); i++){
         if(Print(user, upit, i)){
             break;
         }
@@ -96,7 +96,7 @@ void up(char user[], char upit[]){
 
 //popraviti
 void down(char user[], char upit[]){
- for (int i = indexOf("P"); i >= indexOf(user); i--){
+ for (int i = indexOf(state); i >= indexOf(user); i--){
        if(Print(user, upit, i)){
             break;
         }
@@ -124,10 +124,11 @@ void dvigalo(){
     char upit[20];
 
     //fix code for b flors i ako se upise neko drugo slovo osim n ce isot biti prihvaceno
-    if(indexOf("P") == indexOf(user)){
-        printf("Vec si na tome spratu");
-    } else if(indexOf("P")<indexOf(user)){
-         up(user, upit);
+    if(indexOf(state) == indexOf(user)){
+        printf("Vec si na %s!\n", state);
+        dvigalo();
+    } else if(indexOf(state)<indexOf(user)){
+        up(user, upit);
     }else{
         down(user, upit);
     }
