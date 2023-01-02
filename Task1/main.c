@@ -86,12 +86,18 @@ bool Print(char user[], char upit[], int i){
         }
         
         if(isSame(setUppercase(upit) , "Y" )){
-            printf("END \n");
+            printf("Trenutno ste na nastropju << %s >>\n", flor[i]);
+            //printf("END \n");
             
             //FILE WRITE
             dataPrint(flor[i]);
 
             return true;
+        }else if(isSame(setUppercase(upit) , "N" )){
+            return false;
+        }else{
+            printf("Vas odgovor nije valjan, molimo Vas unesite (Y/N)!!!\n");
+            Print(user, upit, i);
         }
 }
 
@@ -135,7 +141,6 @@ void dvigalo(){
 
     char upit[20];
 
-    //fix code for b flors i ako se upise neko drugo slovo osim n ce isot biti prihvaceno
     if(indexOf(state) == indexOf(user)){
         printf("Vec si na %s!\n", state);
         dvigalo();
