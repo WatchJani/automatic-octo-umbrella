@@ -66,6 +66,43 @@ char *setUppercase(char letter[]) {
     return uppercase;
 }
 
+bool Print(char user[], char upit[], int i){
+  if(!(indexOf(user) == i)){  // izbjegavam da me pita da li zelim izaci na zeljenom spratu!!
+            printf("Trenutno ste na nastropju << %s >>, ali hočeš iti ven?? (Y/N) \n",flor[i]);
+            printf("Tvoj odgovor: ");
+            scanf("%s", upit);
+        }else{
+            printf("Trenutno ste na nastropju << %s >>\n", flor[i]);
+            //OVDJE SE TREBA ZAPISATI U FILE
+        }
+        
+        if(isSame(setUppercase(upit) , "Y" )){
+            printf("END \n");
+
+            //OVDJE SE TREBA ZAPISATI U FILE
+
+            return true;
+        }
+}
+
+//popraviti
+void up(char user[], char upit[]){
+    for (int i = indexOf("P"); i <= indexOf(user); i++){
+        if(Print(user, upit, i)){
+            break;
+        }
+    }
+}
+
+//popraviti
+void down(char user[], char upit[]){
+ for (int i = indexOf("P"); i >= indexOf(user); i--){
+       if(Print(user, upit, i)){
+            break;
+        }
+    }
+}
+
 //submain program
 void dvigalo(){
     printf("V katero nadstropje želite iti?: ");
@@ -85,25 +122,14 @@ void dvigalo(){
     }
 
     char upit[20];
-    
+
     //fix code for b flors i ako se upise neko drugo slovo osim n ce isot biti prihvaceno
-    for (int i = indexOf("P"); i <= indexOf(user); i++){
-        if(!(indexOf(user) == i)){  // izbjegavam da me pita da li zelim izaci na zeljenom spratu!!
-            printf("Trenutno ste na nastropju << %s >>, ali hočeš iti ven?? (Y/N) \n",flor[i]);
-            printf("Tvoj odgovor: ");
-            scanf("%s", upit);
-        }else{
-            printf("Trenutno ste na nastropju << %s >>\n", flor[i]);
-            //OVDJE SE TREBA ZAPISATI U FILE
-        }
-        
-        if(isSame(setUppercase(upit) , "Y" )){
-            printf("END \n");
-
-            //OVDJE SE TREBA ZAPISATI U FILE
-
-            break;
-        }
+    if(indexOf("P") == indexOf(user)){
+        printf("Vec si na tome spratu");
+    } else if(indexOf("P")<indexOf(user)){
+         up(user, upit);
+    }else{
+        down(user, upit);
     }
 }
 
